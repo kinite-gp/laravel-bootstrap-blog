@@ -27,6 +27,7 @@
 {{--                                        this.closest('form').submit();">--}}
 {{--                        {{ __('Log Out') }}--}}
 
+
 <header class="p-3 text-bg-dark text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -45,7 +46,12 @@
                         @csrf
                         <button type="submit" class="btn btn-outline-light me-2" href="{{ route('logout') }}">Logout</button>
                     </form>
-                    <a type="button" class="btn btn-outline-info " href="{{ route('profile.edit') }}">Profile</a>
+                    <a type="button" class="btn btn-outline-light me-2" href="{{ route('profile.edit') }}">Profile</a>
+
+                    @if (\App\Models\User::find(auth()->user()->id)->role->admin == 1)
+                        <a type="button" class="btn btn-outline-info " href="adminpanel">Admin Panel</a>
+                    @endif
+
                 @else
                     <a type="button" class="btn btn-outline-light me-2" href="{{ route('login') }}">Login</a>
                     <a type="button" class="btn btn-outline-light me-2" href="{{ route('register') }}">Register</a>
