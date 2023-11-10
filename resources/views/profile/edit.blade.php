@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@section("title")
+    Edit Profile
+@endsection
+
 @section("main_noborder")
 
     <div class="py-12">

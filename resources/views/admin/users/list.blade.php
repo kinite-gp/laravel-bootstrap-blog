@@ -23,7 +23,7 @@
             <li class="list-group-item model_btn">
                 <h3 class="item-title">{{ $user->name }}</h3>
                 <div class="space-x"></div>
-                <a type="button" class="btn btn-outline-secondary mr-2">Profile</a>
+                <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/user/profile/{{ $user->id }}">Profile</a>
                 <form method="post" action="/panel/admin/user/delete/{{ $user->id }}">
                     @csrf
                     @method("delete")

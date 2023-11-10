@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-    User's
+    Deleted User's
 @endsection
 
 @section("header-link")

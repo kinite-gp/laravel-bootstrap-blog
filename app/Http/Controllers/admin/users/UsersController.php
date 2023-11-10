@@ -42,4 +42,12 @@ class UsersController extends Controller
         User::onlyTrashed()->find($id)->restore();
         return redirect(route("admin_user_list"));
     }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        return view("admin.users.profile",[
+            "user" => $user,
+        ]);
+    }
 }

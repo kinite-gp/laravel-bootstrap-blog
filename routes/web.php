@@ -29,6 +29,7 @@ Route::prefix("/")->group(function (){
             Route::delete("/delete/{id}", [\App\Http\Controllers\admin\users\UsersController::class, "delete"]);
             Route::delete("/delete/force/{id}", [\App\Http\Controllers\admin\users\UsersController::class, "real_delete"]);
             Route::post("/recover/{id}", [\App\Http\Controllers\admin\users\UsersController::class , "recover_user"]);
+            Route::get("/profile/{id}", [\App\Http\Controllers\admin\users\UsersController::class , "profile"]);
         });
     });
 });
