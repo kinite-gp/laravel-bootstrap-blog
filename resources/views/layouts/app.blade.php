@@ -15,8 +15,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/app/layout.css">
 
-        @hasSection("title")
+        @hasSection("header-link")
             @yield("header-link")
         @endif
 
@@ -29,7 +30,7 @@
 
             <!-- Page Heading -->
             @hasSection("title")
-                <header class="bg-white shadow">
+                <header class="bg-white shadow header-space">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         @yield("title")
                     </div>
@@ -43,7 +44,7 @@
                 @hasSection("main_noborder")
                     @yield("main_noborder")
                 @else
-                    <div class="py-12">
+                    <div>
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                 <div class="p-6 text-gray-900">

@@ -15,13 +15,24 @@ use Illuminate\View\View;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name("home");
+;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::prefix("/")->group(function (){
+    Route::get('/', [\App\Http\Controllers\app\AppController::class, "home"])->name("home");
+    Route::get('/dashboard', [\App\Http\Controllers\app\AppController::class, "dashboard"])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::group(['middleware' => ['auth',"admin_check"],'prefix' => '/panel/admin'], function () {
+        Route::get("/", [\App\Http\Controllers\admin\AdminController::class, "admin_panel"])->name("admin_panel");
+        Route::prefix("/user")->group(function (){
+            Route::get("/all", [\App\Http\Controllers\admin\users\UsersController::class , "list"])->name("admin_user_list");
+            Route::get("/all/deleted", [\App\Http\Controllers\admin\users\UsersController::class , "list_deleted"])->name("admin_deleted_user_list");
+            Route::delete("/delete/{id}", [\App\Http\Controllers\admin\users\UsersController::class, "delete"]);
+            Route::delete("/delete/force/{id}", [\App\Http\Controllers\admin\users\UsersController::class, "real_delete"]);
+            Route::post("/recover/{id}", [\App\Http\Controllers\admin\users\UsersController::class , "recover_user"]);
+        });
+    });
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

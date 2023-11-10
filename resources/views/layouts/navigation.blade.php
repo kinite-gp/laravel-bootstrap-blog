@@ -49,7 +49,7 @@
                     <a type="button" class="btn btn-outline-light me-2" href="{{ route('profile.edit') }}">Profile</a>
 
                     @if (\App\Models\User::find(auth()->user()->id)->role->admin == 1)
-                        <a type="button" class="btn btn-outline-info " href="adminpanel">Admin Panel</a>
+                        <a type="button" class="btn btn-outline-info " href="{{ route("admin_panel") }}">Admin Panel</a>
                     @endif
 
                 @else
