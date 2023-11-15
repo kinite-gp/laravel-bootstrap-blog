@@ -31,6 +31,18 @@ Route::prefix("/")->group(function (){
             Route::post("/recover/{id}", [\App\Http\Controllers\admin\users\UsersController::class , "recover_user"]);
             Route::get("/profile/{id}", [\App\Http\Controllers\admin\users\UsersController::class , "profile"]);
         });
+        Route::prefix("/category")->group(function (){
+            Route::get("/all", [App\Http\Controllers\admin\category\CategoryController::class, "list"])->name("admin_category_list");
+            Route::get("/all/deleted", [\App\Http\Controllers\admin\category\CategoryController::class , "list_deleted"])->name("admin_deleted_category_list");
+            Route::delete("/delete/{id}", [\App\Http\Controllers\admin\category\CategoryController::class, "delete"]);
+            Route::delete("/delete/force/{id}", [\App\Http\Controllers\admin\category\CategoryController::class, "real_delete"]);
+            Route::post("/recover/{id}", [\App\Http\Controllers\admin\category\CategoryController::class , "recover_user"]);
+            Route::get("/more/{id}", [\App\Http\Controllers\admin\category\CategoryController::class , "more"]);
+            Route::get("/add", [\App\Http\Controllers\admin\category\CategoryController::class, "add_get"])->name("admin_category_add");
+            Route::post("/add", [\App\Http\Controllers\admin\category\CategoryController::class, "add_post"]);
+            Route::get("/edit/{id}", [\App\Http\Controllers\admin\category\CategoryController::class, "edit_get"]);
+            Route::post("/edit/{id}", [\App\Http\Controllers\admin\category\CategoryController::class, "edit_post"]);
+        });
     });
 });
 
