@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-    User's
+    Categories
 @endsection
 
 @section("header-link")

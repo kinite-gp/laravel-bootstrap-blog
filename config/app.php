@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

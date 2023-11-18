@@ -59,16 +59,20 @@ class CategoryController extends Controller
 
     public function add_post(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             "title" => ["required", "max:100"],
             "description" => ["required", "max:500"],
             "icon" => ["required"]
         ]);
 
+        if ($validatedData->fails()) {
+            return back()->withErrors($validatedData->errors());
+        }
+
         Category::create([
-            "title" => $request->title,
-            "description" => $request->description,
-            "icon" => $request->icon,
+            "title" => $validatedData->title,
+            "description" => $validatedData->description,
+            "icon" => $validatedData->icon,
         ]);
 
         return redirect(route("admin_panel"));
@@ -85,17 +89,21 @@ class CategoryController extends Controller
 
     public function edit_post(Request $request, $id)
     {
-        $category = $request->validate([
+        $validatedData = $request->validate([
             "title" => ["required", "max:100"],
             "description" => ["required", "max:500"],
             "icon" => ["required"]
         ]);
 
+        if ($validatedData->fails()) {
+            return back()->withErrors($validatedData->errors());
+        }
+
         $c = Category::find($id);
         $c->update([
-            "title" => $category["title"],
-            "description" => $category["description"],
-            "icon" => $category["icon"]
+            "title" => $validatedData["title"],
+            "description" => $validatedData["description"],
+            "icon" => $validatedData["icon"]
         ]);
         return redirect(route("admin_panel"));
     }

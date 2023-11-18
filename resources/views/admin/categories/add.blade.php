@@ -18,18 +18,25 @@
                         <div class="mb-3">
                             <lable class="form-label">Title</lable>
                             <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="title" type="text" maxlength="100">
+                            @if($errors->has("title"))
+                                <span class="badge text-bg-danger">{{ $errors->first("title") }}</span>
+                            @endif
                         </div>
 
                         <div class="mb-3">
                             <lable>Description</lable>
-                            <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="description" maxlength="300" rows="10">
-
-                            </textarea>
+                            <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="description" maxlength="300" rows="10"></textarea>
+                            @if($errors->has("description"))
+                                <span class="badge text-bg-danger">{{ $errors->first("description") }}</span>
+                            @endif
                         </div>
 
                         <div class="mb-3">
                             <lable>Icon</lable>
                             <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="icon" type="text">
+                            @if($errors->has("icon"))
+                                <span class="badge text-bg-danger">{{ $errors->first("icon") }}</span>
+                            @endif
                         </div>
 
                         <div>

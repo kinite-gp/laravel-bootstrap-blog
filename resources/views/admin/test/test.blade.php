@@ -1,0 +1,5 @@
+@markdown
+
+   {{ $post->body }}
+
+@endmarkdown
