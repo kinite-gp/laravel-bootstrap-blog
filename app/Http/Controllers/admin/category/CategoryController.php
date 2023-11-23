@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin\category;
 
+use App\Http\Controllers\admin\post\PostController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,6 +30,14 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $category = Category::find($id);
+        $posts = Post::where("category_id", $id)->get();
+
+        foreach ($posts as $post)
+        {
+            $post = Post::find($post->id);
+            $post->delete();
+        }
+        
         $category->delete();
         return redirect(route("admin_category_list"));
     }

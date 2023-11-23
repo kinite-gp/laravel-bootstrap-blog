@@ -49,7 +49,7 @@ class PostController extends Controller
 
     public function more($id)
     {
-        $post = Post::find($id);
+        $post = Post::withTrashed()->find($id);
         return view("admin.posts.more",[
             "post" => $post,
         ]);
@@ -88,7 +88,7 @@ class PostController extends Controller
     public function edit_get($id)
     {
         $categories = Category::all();
-        $post = Post::find($id);
+        $post = Post::withTrashed()->find($id);
         return view("admin.posts.edit",[
             "post" => $post,
             "categories" => $categories

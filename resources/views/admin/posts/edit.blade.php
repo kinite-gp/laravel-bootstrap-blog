@@ -44,7 +44,14 @@
                                 <option disabled value> -- select an option -- </option>
                                 @php
                                     $category = \App\Models\Category::find($post->category_id);
-                                    $category_id = $category->title;
+                                    if (isset($category->title))
+                                        {
+                                            $category_id = $category->title;
+                                        }
+                                    else
+                                        {
+                                            $category_id = null;
+                                        }
                                 @endphp
                                 @foreach($categories as $category)
 

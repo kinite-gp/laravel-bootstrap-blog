@@ -16,9 +16,15 @@
 
         <div class="mb-3">
             <lable class="form-label">Category</lable>
-            <input
-                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                type="text" maxlength="100" readonly value="{{ $post->category->title }}">
+            @if(! isset($post->category))
+                <input
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                    type="text" maxlength="100" readonly value="Category is deleted">
+            @else
+                <input
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                    type="text" maxlength="100" readonly value="{{ $post->category->title }}">
+            @endif
         </div>
 
         <div class="mb-3">

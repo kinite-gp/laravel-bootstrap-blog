@@ -23,12 +23,18 @@
             <li class="list-group-item model_btn">
                 <h3 class="item-title">{{ $post->title }}</h3>
                 <div class="space-x"></div>
-                <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/category/edit/{{ $post->id }}">Edit</a>
-                <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/category/more/{{ $post->id }}">More...</a>
-                <form method="post" action="/panel/admin/post/recover/{{ $post->id }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-secondary mr-2">Recover</button>
-                </form>
+
+                @if(isset($post->category))
+                    <form method="post" action="/panel/admin/post/recover/{{ $post->id }}">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-secondary mr-2">Recover</button>
+                    </form>
+                @else
+                    <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/post/edit/{{ $post->id }}">Edit</a>
+                    <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/post/more/{{ $post->id }}">More...</a>
+                @endif
+
+
                 <form method="post" action="/panel/admin/post/delete/force/{{ $post->id }}">
                     @csrf
                     @method("delete")
