@@ -14,16 +14,18 @@ class CategoryController extends Controller
     public function list()
     {
         $categories = Category::all();
-        return view("admin.categories.list", [
-            "categories" => $categories,
+        return view("admin.layouts.list", [
+            "title" => "category",
+            "items" => $categories,
         ]);
     }
 
     public function list_deleted()
     {
         $categories = Category::onlyTrashed()->get();
-        return view("admin.categories.list_deleted",[
-            "categories" => $categories,
+        return view("admin.layouts.list_deleted",[
+            "title" => "category",
+            "items" => $categories,
         ]);
     }
 
@@ -37,7 +39,7 @@ class CategoryController extends Controller
             $post = Post::find($post->id);
             $post->delete();
         }
-        
+
         $category->delete();
         return redirect(route("admin_category_list"));
     }

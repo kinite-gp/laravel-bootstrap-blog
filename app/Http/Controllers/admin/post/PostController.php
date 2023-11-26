@@ -15,16 +15,18 @@ class PostController extends Controller
     public function list()
     {
         $posts = Post::all();
-        return view("admin.posts.list", [
-            "posts" => $posts,
+        return view("admin.layouts.list", [
+            "title" => "post",
+            "items" => $posts,
         ]);
     }
 
     public function list_deleted()
     {
         $posts = Post::onlyTrashed()->get();
-        return view("admin.posts.list_deleted",[
-            "posts" => $posts,
+        return view("admin.layouts.list_deleted",[
+            "title" => "post",
+            "items" => $posts,
         ]);
     }
 

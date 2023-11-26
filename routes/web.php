@@ -18,11 +18,7 @@ use Illuminate\View\View;
 ;
 
 Route::get("/test",function () {
-    $post = \App\Models\Post::find(1);
-
-    return view("admin.test.test", [
-        "post" => $post
-    ]);
+    dd(\App\Models\Post::find(1));
 });
 
 
@@ -62,6 +58,14 @@ Route::prefix("/")->group(function (){
             Route::post("/add", [\App\Http\Controllers\admin\post\PostController::class, "add_post"]);
             Route::get("/edit/{id}", [\App\Http\Controllers\admin\post\PostController::class, "edit_get"]);
             Route::post("/edit/{id}", [\App\Http\Controllers\admin\post\PostController::class, "edit_post"]);
+        });
+        Route::prefix("/comment")->group(function (){
+            Route::get("/all", [\App\Http\Controllers\admin\comment\CommentController::class, "list"])->name("admin_comment_list");
+            Route::get("/all/deleted", [\App\Http\Controllers\admin\comment\CommentController::class , "list_deleted"])->name("admin_deleted_post_list");
+            Route::delete("/delete/{id}", [\App\Http\Controllers\admin\comment\CommentController::class, "delete"]);
+            Route::delete("/delete/force/{id}", [\App\Http\Controllers\admin\comment\CommentController::class, "real_delete"]);
+            Route::post("/recover/{id}", [\App\Http\Controllers\admin\comment\CommentController::class , "recover_user"]);
+            Route::get("/more/{id}", [\App\Http\Controllers\admin\comment\CommentController::class , "more"]);
         });
     });
 });

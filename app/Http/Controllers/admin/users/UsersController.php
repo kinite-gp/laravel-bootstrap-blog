@@ -11,16 +11,18 @@ class UsersController extends Controller
     public function list()
     {
         $users = User::all();
-        return view("admin.users.list", [
-            "users" => $users,
+        return view("admin.layouts.list", [
+            "title" => "user",
+            "items" => $users,
         ]);
     }
 
     public function list_deleted()
     {
         $users = User::onlyTrashed()->get();
-        return view("admin.users.list_deleted",[
-            "users" => $users,
+        return view("admin.layouts.list_deleted",[
+            "title" => "user",
+            "items" => $users,
         ]);
     }
 
