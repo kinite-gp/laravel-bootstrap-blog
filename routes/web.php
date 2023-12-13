@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\post\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
@@ -18,13 +20,21 @@ use Illuminate\View\View;
 ;
 
 Route::get("/test",function () {
-    dd(\App\Models\Post::find(1));
+    
+    dd(auth()->user());
+
+
+
 });
 
 
 Route::prefix("/")->group(function (){
     Route::get('/', [\App\Http\Controllers\app\AppController::class, "home"])->name("home");
     Route::get('/dashboard', [\App\Http\Controllers\app\AppController::class, "dashboard"])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::group(['middleware' => ['auth'], 'prefix' => '/panel/user'], function(){
+        Route::get("/", [\App\Http\Controllers\user\UserController::class, "user_panel"])->name("user_panel");
+
+    });
     Route::group(['middleware' => ['auth',"admin_check"],'prefix' => '/panel/admin'], function () {
         Route::get("/", [\App\Http\Controllers\admin\AdminController::class, "admin_panel"])->name("admin_panel");
         Route::prefix("/user")->group(function (){

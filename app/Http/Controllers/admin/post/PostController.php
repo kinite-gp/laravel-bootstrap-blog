@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -67,25 +68,26 @@ class PostController extends Controller
 
     public function add_post(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             "title" => ["required", "max:100"],
             "body" => ["required"],
             "category_id" => ["required"]
         ]);
 
-        if ($validatedData->fails()) {
-            return back()->withErrors($validatedData->errors());
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
         }
 
         Post::create([
-            "user_id" => auth()->user()->id,
-            "title" => $validatedData->title,
-            "category_id" => $validatedData->category_id,
-            "body" => $validatedData->body,
+            "user_id" => Auth::id(),
+            "title" => $request->input("title"),
+            "body" => $request->input("body"),
+            "category_id" => $request->input("category_id")
         ]);
 
         return redirect(route("admin_panel"));
     }
+
 
     public function edit_get($id)
     {
@@ -105,17 +107,15 @@ class PostController extends Controller
             "category_id" => ["required"]
         ]);
 
-        if ($validatedData->fails()) {
-            return back()->withErrors($validatedData->errors());
-        }
 
-        $c = Post::find($id);
-        $c->update([
-            "user_id" => auth()->user()->id,
-            "title" => $validatedData->title,
-            "category_id" => $validatedData->category_id,
-            "body" => $validatedData->body,
+        $post = Post::find($id);
+        $post->update([
+            "title" => $request->input("title"),
+            "description" => $request->input("description"),
+            "icon" => $request->input("icon"),
         ]);
+
         return redirect(route("admin_panel"));
     }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\category;
 
 use App\Http\Controllers\admin\post\PostController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -69,27 +70,27 @@ class CategoryController extends Controller
         return view("admin.categories.add");
     }
 
+
     public function add_post(Request $request)
-    {
-        $validatedData = $request->validate([
-            "title" => ["required", "max:100"],
-            "description" => ["required", "max:500"],
-            "icon" => ["required"]
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        "title" => ["required", "max:100"],
+        "description" => ["required", "max:500"],
+        "icon" => ["required"]
+    ]);
 
-        if ($validatedData->fails()) {
-            return back()->withErrors($validatedData->errors());
-        }
-
-        Category::create([
-            "title" => $validatedData->title,
-            "description" => $validatedData->description,
-            "icon" => $validatedData->icon,
-        ]);
-
-        return redirect(route("admin_panel"));
-
+    if ($validator->fails()) {
+        return back()->withErrors($validator->errors());
     }
+
+    Category::create([
+        "title" => $request->input("title"),
+        "description" => $request->input("description"),
+        "icon" => $request->input("icon"),
+    ]);
+
+    return redirect(route("admin_panel"));
+}
 
     public function edit_get($id)
     {
@@ -107,16 +108,14 @@ class CategoryController extends Controller
             "icon" => ["required"]
         ]);
 
-        if ($validatedData->fails()) {
-            return back()->withErrors($validatedData->errors());
-        }
-
         $c = Category::find($id);
         $c->update([
             "title" => $validatedData["title"],
             "description" => $validatedData["description"],
             "icon" => $validatedData["icon"]
         ]);
+
         return redirect(route("admin_panel"));
     }
+
 }

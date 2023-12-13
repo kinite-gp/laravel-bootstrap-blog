@@ -1,0 +1,36 @@
+.vfl {
+    display: flex;
+    flex-direction: row;
+}
+
+.mru {
+    margin-right: auto;
+}
+
+.mlu {
+    margin-left: auto;
+}
+
+.mc20 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.alcenter {
+    height: fit-content;
+    text-align: center;
+    padding: 30px;
+}
+
+.ctitle {
+    font-size: 25px;
+}
+
+.cvalue {
+    font-size: 45px;
+}
+
+.clink {
+    color: #111827;
+    text-decoration-line: underline;
+}
