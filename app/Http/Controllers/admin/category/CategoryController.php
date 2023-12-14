@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function list()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(20);
         return view("admin.layouts.list", [
             "title" => "category",
             "items" => $categories,
@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
     public function list_deleted()
     {
-        $categories = Category::onlyTrashed()->get();
+        $categories = $categories = Category::onlyTrashed()->paginate(20);
         return view("admin.layouts.list_deleted",[
             "title" => "category",
             "items" => $categories,
@@ -59,7 +59,7 @@ class CategoryController extends Controller
 
     public function more($id)
     {
-        $category = Category::find($id);
+        $category = Category::withTrashed()->find($id);
         return view("admin.categories.more",[
             "category" => $category,
         ]);

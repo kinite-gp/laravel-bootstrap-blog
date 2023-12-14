@@ -47,5 +47,10 @@
 
             </li>
         @endforeach
+
+        <div class="mau">
+            {{ $items->links() }}
+        </div>
+        
     </ul>
 @endsection

@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     public function list()
     {
-        $comments = Comment::all();
+        $comments = Comment::paginate(20);
         return view("admin.layouts.list", [
             "title" => "comment",
             "items" => $comments,
@@ -20,7 +20,7 @@ class CommentController extends Controller
 
     public function list_deleted()
     {
-        $comments = Comment::onlyTrashed()->get();
+        $comments = Comment::onlyTrashed()->paginate(20);
         return view("admin.layouts.list_deleted",[
             "title" => "comment",
             "items" => $comments,

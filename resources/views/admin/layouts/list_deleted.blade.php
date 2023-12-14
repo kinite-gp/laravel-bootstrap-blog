@@ -41,10 +41,11 @@
                     <h3 class="item-title">{{ $item->title }}</h3>
                     <div class="space-x"></div>
 
-                    @if(isset($item->category))
+                    @if(isset($item->description))
                         <form method="post" action="/panel/admin/{{ $title }}/recover/{{ $item->id }}">
                             @csrf
                             <button type="submit" class="btn btn-outline-secondary mr-2">Recover</button>
+                            <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/{{ $title }}/more/{{ $item->id }}">More...</a>
                         </form>
                     @else
                         <a type="button" class="btn btn-outline-secondary mr-2" href="/panel/admin/{{ $title }}/edit/{{ $item->id }}">Edit</a>
@@ -81,5 +82,9 @@
 
             </li>
         @endforeach
+
+        <div class="mau">
+            {{ $items->links() }}
+        </div>
     </ul>
 @endsection

@@ -14,3 +14,14 @@
     margin-top: auto;
     font-size: 20px;
 }
+
+.mau {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.hidden{
+    display: flex;
+    flex-direction: column-reverse;
+}

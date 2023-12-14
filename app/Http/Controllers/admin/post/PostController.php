@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function list()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(20);
         return view("admin.layouts.list", [
             "title" => "post",
             "items" => $posts,
@@ -24,7 +24,7 @@ class PostController extends Controller
 
     public function list_deleted()
     {
-        $posts = Post::onlyTrashed()->get();
+        $posts = Post::onlyTrashed()->paginate(20);
         return view("admin.layouts.list_deleted",[
             "title" => "post",
             "items" => $posts,
