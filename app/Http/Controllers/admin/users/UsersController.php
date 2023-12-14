@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function list()
     {
-        $users = User::all();
+        $users = User::paginate(20);
         return view("admin.layouts.list", [
             "title" => "user",
             "items" => $users,
@@ -19,7 +19,7 @@ class UsersController extends Controller
 
     public function list_deleted()
     {
-        $users = User::onlyTrashed()->get();
+        $users = User::onlyTrashed()->paginate(20);
         return view("admin.layouts.list_deleted",[
             "title" => "user",
             "items" => $users,

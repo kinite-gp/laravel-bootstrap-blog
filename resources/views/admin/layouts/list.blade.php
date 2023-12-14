@@ -11,10 +11,10 @@
 @section("main")
     <ul class="nav justify-content-center nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/panel/admin/{{ $title }}/all">All Categories</a>
+            <a class="nav-link active" aria-current="page" href="/panel/admin/{{ $title }}/all">All {{ ucfirst($title) }}s</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/panel/admin/{{ $title }}/all/deleted">Deleted Categories</a>
+            <a class="nav-link" href="/panel/admin/{{ $title }}/all/deleted">Deleted {{ ucfirst($title) }}s</a>
         </li>
     </ul>
 
