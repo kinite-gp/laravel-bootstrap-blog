@@ -24,6 +24,10 @@
 
 .ctitle {
     font-size: 25px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
 }
 
 .cvalue {
@@ -33,4 +37,22 @@
 .clink {
     color: #111827;
     text-decoration-line: underline;
+}
+
+.gap {
+    width: 24px;
+}
+
+
+.menu {
+    width: calc(18rem + 18rem + 24px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+}
+
+.hidden{
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column-reverse;
 }

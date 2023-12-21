@@ -24,7 +24,7 @@
                 @isset($item->title)
 
 
-                    @if(isset($item->comment))
+                    @if(isset($item->comment) | isset($item->title))
                         <h3 class="item-title">{{ $item->title }}</h3>
                         <div class="space-x"></div>
                         <form method="post" action="/panel/admin/{{ $title }}/recover/{{ $item->id }}">

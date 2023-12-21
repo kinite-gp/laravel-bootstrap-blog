@@ -15,9 +15,12 @@ class UserController extends Controller
         $posts = count(\App\Models\User::find(auth()->user()->id)->posts);
         $comments = count(\App\Models\User::find(auth()->user()->id)->comments);
 
+        $yposts = Post::paginate(2);
+
         return view("user.panel" , [
             "posts" => $posts,
-            "comments" => $comments
+            "comments" => $comments,
+            "items" => $yposts,
         ]);
     }
 }
