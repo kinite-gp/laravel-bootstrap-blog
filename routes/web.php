@@ -33,7 +33,7 @@ Route::prefix("/")->group(function (){
     Route::get('/dashboard', [\App\Http\Controllers\app\AppController::class, "dashboard"])->middleware(['auth', 'verified'])->name('dashboard');
     
     Route::prefix("/web")->group(function (){
-        Route::get("/about", [\App\Http\Controllers\web\WebController::class, "about"]);
+        Route::get("/about", [\App\Http\Controllers\web\WebController::class, "about"])->name("about");
         Route::get("/faqs", [\App\Http\Controllers\web\WebController::class, "faqs"]);
         Route::get("/rules", [\App\Http\Controllers\web\WebController::class, "rules"]);
         Route::get("/allposts", [\App\Http\Controllers\web\WebController::class, "allposts"]);

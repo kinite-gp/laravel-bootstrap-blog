@@ -10,7 +10,7 @@ class WebController extends Controller
 {
     public function about()
     {
-        return "about";
+        return view("web.about");
     }
 
     public function faqs()
