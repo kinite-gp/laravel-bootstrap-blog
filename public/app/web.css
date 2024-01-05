@@ -1,0 +1,107 @@
+.post-card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 24px;
+}
+
+.post-title {
+    font-size: 45px;
+    margin-bottom: 0;
+}
+
+.post-user p {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-bottom: 48px;
+}
+
+.post-body {
+    font-size: 20px;
+}
+
+.post-body h1 {
+    font-size: 40px;
+    margin-top: 12px;
+}
+
+.post-body h2 {
+    font-size: 36px;
+    margin-top: 12px;
+}
+
+.post-body h3 {
+    font-size: 32px;
+    margin-top: 12px;
+}
+
+.post-body h4 {
+    font-size: 28px;
+    margin-top: 12px;
+}
+
+.post-body h5 {
+    font-size: 24px;
+    margin-top: 12px;
+}
+
+.post-body h6 {
+    font-size: 20px;
+    margin-top: 12px;
+}
+
+.post-body strong {
+    font-weight: bold;
+}
+
+.post-body li {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-bottom: 10px;
+}
+
+.post-body a {
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+
+.post-body code {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin: 4px;
+}
+
+.post-body a img {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.post-body p img {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-body p {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.hr {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: 1px;
+    height: 1px;
+}
+
+pre {
+    padding: 12px;
+}
